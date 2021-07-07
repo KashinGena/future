@@ -1,7 +1,8 @@
 import React from 'react'
+import Loader from '../Loader/Loader'
 
 
-const Table = ({rows}) => {
+const Table = ({rows, isLoading}) => {
     return (
         <table class="table table-hover">
             <thead>
@@ -13,7 +14,7 @@ const Table = ({rows}) => {
                 <th scope="col">Phone</th>
                 </tr>
             </thead>
-            <tbody>
+           <tbody>
                 {rows && rows.map((row,index) => {
                     return (
                         <tr key={row.id}>

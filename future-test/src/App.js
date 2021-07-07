@@ -1,21 +1,17 @@
 import React from 'react'
 import './App.css';
-import Table from './components/Table/Table';
-import {fetchTable} from './redux/actions/table'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
+import TableContainer from './pages/TableContainer/TableContainer';
+import Loader from './components/Loader/Loader';
 
 function App() {
-  const dispatch = useDispatch()
-  const rows = useSelector(state => state.filteredRows)
-  React.useEffect(() => {
-    dispatch(fetchTable())
+  const isLoading = useSelector(state => state.isLoading)
+  
 
-    
-  },[])
 
   return (
     <div className="App">
-       {rows && <Table rows={rows}/>} 
+        <TableContainer/>
     </div>
   );
 }
