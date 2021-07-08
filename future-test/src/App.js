@@ -1,17 +1,23 @@
 import React from 'react'
 import './App.css';
-import {useSelector} from 'react-redux'
 import TableContainer from './pages/TableContainer/TableContainer';
+import {fetchTable} from './redux/actions/table'
+import {useDispatch, useSelector} from 'react-redux'
 import Loader from './components/Loader/Loader';
 
 function App() {
-  const isLoading = useSelector(state => state.isLoading)
-  
+  const dispatch = useDispatch()
+  const isLoading = useSelector(state => state.tableReducer.isLoading)
+
+  React.useEffect(() => {
+    dispatch(fetchTable())
+},[])
+
 
 
   return (
     <div className="App">
-        <TableContainer/>
+        {isLoading? <Loader/>:<TableContainer/>}
     </div>
   );
 }

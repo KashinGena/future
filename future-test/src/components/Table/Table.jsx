@@ -1,10 +1,10 @@
 import React from 'react'
-import Loader from '../Loader/Loader'
 
 
-const Table = ({rows, isLoading}) => {
+
+const Table = ({rows, onClickDetail}) => {
     return (
-        <table class="table table-hover">
+        <table className="table table-hover">
             <thead>
                 <tr>
                 <th scope="col">id</th>
@@ -17,7 +17,7 @@ const Table = ({rows, isLoading}) => {
            <tbody>
                 {rows && rows.map((row,index) => {
                     return (
-                        <tr key={row.id}>
+                        <tr key={row.id+row.phone} onClick={onClickDetail.bind(row)}>
                             <th scope="row">{row.id}</th>
                             <td>{row.firstName}</td>
                             <td>{row.lastName}</td>

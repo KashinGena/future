@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import {tableReducer as table} from './reducers/table'
+import {tableReducer} from './reducers/table'
+
 
 
 const composeEnhancers =
@@ -9,5 +10,10 @@ const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose;
-const store = createStore(table,composeEnhancers(applyMiddleware(thunk)))
+
+const rootReducer = combineReducers({tableReducer})
+
+const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)))
+console.log(store.getState());
+
 export default store

@@ -19,3 +19,10 @@ const fetchTableSuccess = (rows) => {
         payload:rows
     }
 }
+
+export const searchTableData = (search) => {
+    return {
+        type:'SEARCH_DATA',
+        payload:search
+    }
+}

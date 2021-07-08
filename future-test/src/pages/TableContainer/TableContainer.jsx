@@ -1,29 +1,35 @@
 import React from 'react'
 import Table from '../../components/Table/Table'
 import Pagination from '../../components/Pagination/Pagination'
-import {fetchTable} from '../../redux/actions/table'
 import {useDispatch, useSelector} from 'react-redux'
-import Loader from '../../components/Loader/Loader'
+import DetailInfo from '../../components/DetailInfo/DetailInfo'
+import Search from '../../components/SearchInput/Search'
+import {searchTableData} from '../../redux/actions/table'
 
 const TableContainer = () => {
     const dispatch = useDispatch()
-    const rows = useSelector(state => state.rows)
-    const isLoading = useSelector(state => state.isLoading)
+    const rows = useSelector(state => state.tableReducer.filteredRows)
+    const [detail,setDetail] =React.useState(null)
+    const [search, setSearch] = React.useState('')
+   
     
-    
-
-    React.useEffect(() => {
-        dispatch(fetchTable())
-    
-        
+    const onDetailClick = React.useCallback(function() { 
+        setDetail(this)
     },[])
 
+    const onSearch = React.useCallback(function(event) { 
+        setSearch(event.target.value)
+        dispatch(searchTableData(event.target.value))
+    },[])
+
+ 
+
     return (
-        
-        <div>
-            {isLoading?<Loader/>: <><Table rows={rows} /> 
-             <Pagination/></>}
-           
+        <div className='container'>
+            <Search value={search} onChange={onSearch}/>
+            <Table rows={rows} onClickDetail={onDetailClick} /> 
+             <Pagination/>
+            {detail && <DetailInfo user={detail}/>}
         </div>
         
     )

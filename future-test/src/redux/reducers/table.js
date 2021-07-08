@@ -2,7 +2,8 @@ const initialState = {
     rows:[],
     filteredRows:[],
     isLoading:false,
-    isError: false
+    isError: false,
+    
 }
 
 
@@ -26,7 +27,20 @@ export const tableReducer = (state= initialState, action) => {
                 ...state,
                 isError:true
             }
-        
+        case ("SEARCH_DATA"):
+            const search = action.payload
+            const filteredRows = [...state.rows].filter(item => {
+                return item.id.toString().includes(search) ||
+                item.firstName.includes(search) ||
+                item.lastName.includes(search) ||
+                item.phone.includes(search) ||
+                item.email.includes(search)
+
+            })
+            return {
+                ...state,
+                filteredRows
+                }
         default:
             return state;
     }
