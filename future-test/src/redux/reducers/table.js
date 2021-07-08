@@ -1,3 +1,5 @@
+import sort from '../../helpers/sort'
+
 const initialState = {
     rows:[],
     filteredRows:[],
@@ -41,6 +43,15 @@ export const tableReducer = (state= initialState, action) => {
                 ...state,
                 filteredRows
                 }
+        case('SORT_TABLE'): {
+            const sortTable= sort([...state.filteredRows],action.payload.sortType, action.payload.sortField)
+            console.log(sortTable);
+            return {
+                ...state, 
+                filteredRows:sortTable
+            }
+            
+        }
         default:
             return state;
     }

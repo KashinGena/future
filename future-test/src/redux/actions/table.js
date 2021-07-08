@@ -26,3 +26,10 @@ export const searchTableData = (search) => {
         payload:search
     }
 }
+
+export const sortTable = (sort) => {
+    return {
+        type:'SORT_TABLE',
+        payload:sort
+    }
+}

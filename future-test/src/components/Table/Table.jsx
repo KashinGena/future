@@ -2,16 +2,30 @@ import React from 'react'
 
 
 
-const Table = ({rows, onClickDetail}) => {
+const Table = ({rows, onClickDetail,onSort, sortType, sortField}) => {
     return (
         <table className="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">id</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
+                    <th onClick={onSort.bind(null,'id')} scope="col">
+                        <small>{sortField==='id'?sortType:null}</small> id
+                    </th>
+                    <th onClick={onSort.bind(null,'firstName')} scope="col">
+                        <small>{sortField==='firstName'?sortType:null}</small>
+                        FirstName
+                    </th>
+                    <th onClick={onSort.bind(null,'lastName')} scope="col">
+                        <small>{sortField==='lastName'?sortType:null}</small>
+                        LastName
+                    </th>
+                    <th onClick={onSort.bind(null,'email')} scope="col">
+                        <small>{sortField==='email'?sortType:null}</small>
+                        Email
+                    </th>
+                    <th onClick={onSort.bind(null,'phone')} scope="col">
+                        <small>{sortField==='phone'?sortType:null}</small>
+                        Phone
+                    </th>
                 </tr>
             </thead>
            <tbody>
